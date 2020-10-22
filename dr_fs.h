@@ -202,6 +202,10 @@ typedef uint32_t         dr_uint32;
 typedef int64_t          dr_int64;
 typedef uint64_t         dr_uint64;
 #endif
+#ifdef __APPLE__
+#define lseek64          lseek
+#define open64           open
+#endif
 typedef dr_uint8         dr_bool8;
 typedef dr_uint32        dr_bool32;
 #define DR_TRUE          1
