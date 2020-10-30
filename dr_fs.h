@@ -2192,6 +2192,16 @@ static dr_bool32 drfs_next_native_iteration(drfs_handle iterator, drfs_file_info
 #include <sys/sendfile.h>
 #endif
 
+#ifdef __APPLE__
+#include <Availability.h>
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6
+#define stat64                  stat
+#define fstat64                 fstat
+#endif
+#endif
+#endif
+
 #define DRFS_HANDLE_TO_FD(file) ((int)((size_t)file) - 1)
 #define DRFS_FD_TO_HANDLE(fd)   ((drfs_handle)(size_t)(fd + 1))
 
